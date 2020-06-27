@@ -7,7 +7,8 @@
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <title>Результаты тестирования</title>
 </head>
-<body>
+<body bgcolor="#F5FFFA">
+<h3>Результаты тестирования:</h3>
 <p>Исходный уровень защищённости системы: ${sequrityLevel}</p>
 <p>Вероятность реализации угрозы: ${probability}
 <p>Реализуемость угрозы: ${feasibility}

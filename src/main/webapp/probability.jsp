@@ -7,8 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <title>Вопрос №2</title>
 </head>
-<body>
-
+<body bgcolor="#F5FFFA">
 <h3>Определение вероятности реализации угрозы.</h3>
 <form:form method="POST" action="probability"  modelAttribute="probability">
     <p><b>Выберите нарушителей, обладающих, на ваш взгляд, мотивацией для атаки системы:</b></p>

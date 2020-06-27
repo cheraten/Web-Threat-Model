@@ -18,7 +18,7 @@ public class MainController {
     private static String finalSequrityLevel;
     private static String finalProbability;
 
-    @RequestMapping(value={"/", "/sequritylevel"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/sequritylevel"}, method = RequestMethod.GET)
     public ModelAndView getQList1() {
         ModelAndView modelAndView = new ModelAndView();
         SequrityLevel sequrityLevel = new SequrityLevel();

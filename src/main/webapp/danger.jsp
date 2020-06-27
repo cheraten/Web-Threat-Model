@@ -7,8 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <title>Вопрос №3</title>
 </head>
-<body>
-
+<body bgcolor="#F5FFFA">
 <h3>Определение опасности от реализации рассматриваемой угрозы.</h3>
 <form:form method="POST" action="danger"  modelAttribute="danger">
     <p><b>Оцените уровень ущерба от реализации угрозы:</b></p>
