@@ -39,7 +39,6 @@ public class RegistrationController {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "registration.jsp";
         }
-
-        return "news.jsp";
+        return "modeling.jsp";
     }
 }
