@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 public class Probability {
     private String probabilityString;
+    private Long threatId;
 
     public Probability() {
     }
@@ -13,9 +14,9 @@ public class Probability {
         return new Probability();
     }
 
-    public Probability(String probabilityString) {
+    public Probability(String probabilityString, Long threatId) {
         this.probabilityString = probabilityString;
-
+        this.threatId = threatId;
     }
 
     public String getProbabilityString() {
@@ -24,5 +25,13 @@ public class Probability {
 
     public void setProbabilityString(String probabilityString) {
         this.probabilityString = probabilityString;
+    }
+
+    public Long getThreatId() {
+        return threatId;
+    }
+
+    public void setThreatId(Long threatId) {
+        this.threatId = threatId;
     }
 }

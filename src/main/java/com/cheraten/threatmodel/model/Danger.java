@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 public class Danger {
     private String dangerString;
+    private Long threatId;
 
     public Danger() {
     }
@@ -13,9 +14,9 @@ public class Danger {
         return new Danger();
     }
 
-    public Danger(String dangerString) {
+    public Danger(String dangerString, Long threatId) {
         this.dangerString = dangerString;
-
+        this.threatId = threatId;
     }
 
     public String getDangerString() {
@@ -24,5 +25,13 @@ public class Danger {
 
     public void setDangerString(String dangerString) {
         this.dangerString = dangerString;
+    }
+
+    public Long getThreatId() {
+        return threatId;
+    }
+
+    public void setThreatId(Long threatId) {
+        this.threatId = threatId;
     }
 }

@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Доступ только для пользователей с ролью Администратор
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/modeling").fullyAuthenticated()
-                .antMatchers("/sequritylevel").fullyAuthenticated()
+                .antMatchers("/security_level").fullyAuthenticated()
                 .antMatchers("/probability").fullyAuthenticated()
                 .antMatchers("/danger").fullyAuthenticated()
                 .antMatchers("/final.jsp").fullyAuthenticated()

@@ -10,19 +10,12 @@
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 <body>
-<div>
-    <h3>${pageContext.request.userPrincipal.name}</h3>
-    <sec:authorize access="!isAuthenticated()">
-        <h4><a href="/login">Войти</a></h4>
-        <h4><a href="/registration">Зарегистрироваться</a></h4>
-    </sec:authorize>
-    <sec:authorize access="isAuthenticated()">
-        <h4><a href="/logout">Выйти</a></h4>
-    </sec:authorize>
-    <h4><a href="/modeling">Модель угроз</a></h4>
-    <sec:authorize access="hasRole('ADMIN')">
-        <h4><a href="/admin">Список пользователей</a></h4>
-    </sec:authorize>
+<div class="header"><a><h2>Главная страница</h2></a></div>
+<div class="menu"><jsp:include page="menu.jsp"></jsp:include></div>
+<div class="container">
+    <div class="center_item">
+    Этот сайт посвящён автоматизации деятельности по модеелированию угроз.
+    </div>
 </div>
 </body>
 </html>

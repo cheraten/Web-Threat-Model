@@ -6,31 +6,31 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
     <title>Регистрация</title>
 </head>
 
 <body>
-<div>
+<div class="header"><a><h2>Регистрация</h2></a></div>
+<div class="menu"><jsp:include page="menu.jsp"></jsp:include></div>
+<div class="container">
+    <div class="center_item">
     <form:form method="POST" modelAttribute="userForm">
-        <h2>Регистрация</h2>
-        <div>
-            <form:input type="text" path="username" placeholder="Username"
+        <p><form:input type="text" path="username" placeholder="Username"
                         autofocus="true"></form:input>
             <form:errors path="username"></form:errors>
-                ${usernameError}
-        </div>
-        <div>
-            <form:input type="password" path="password" placeholder="Password"></form:input>
-        </div>
-        <div>
-            <form:input type="password" path="passwordConfirm"
+                ${usernameError} </p>
+        <p><form:input type="password" path="password" placeholder="Password"></form:input></p>
+        <p><form:input type="password" path="passwordConfirm"
                         placeholder="Confirm your password"></form:input>
             <form:errors path="password"></form:errors>
-                ${passwordError}
-        </div>
-        <button type="submit">Зарегистрироваться</button>
+                ${passwordError}</p>
+        <p><button type="submit">Зарегистрироваться</button></p>
     </form:form>
-    <a href="/">Главная</a>
+    <div class="item">
+        <a href="/">Главная</a>
+    </div>
+    </div>
 </div>
 </body>
 </html>

@@ -5,12 +5,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Log in with your account</title>
+    <title>Admin access</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
 <body>
-<div>
+<div class="header"><a><h2>Список пользователей сайта</h2></a></div>
+<div class="menu"><jsp:include page="menu.jsp"></jsp:include></div>
+<div class="container">
+    <div class="center_item">
     <table>
         <thead>
         <th>ID</th>
@@ -38,7 +41,10 @@
             </tr>
         </c:forEach>
     </table>
-    <a href="/">Главная</a>
+    <div class="item">
+        <a href="/">Главная</a>
+    </div>
+    </div>
 </div>
 </body>
 </html>

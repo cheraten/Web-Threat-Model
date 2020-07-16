@@ -1,7 +1,102 @@
 table {
     border-collapse: collapse;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
 }
 
 table, th, td {
     border: 1px solid black;
+}
+
+body{
+    background-image: url("https://sun1-99.userapi.com/HLTJi4MAt9Qk4VYqAKIV9YRi2DHJPbUy5bwzvg/7yyECMbzZck.jpg");
+}
+p{
+    color: #000000;
+    font-size: 16px;
+}
+
+a{
+    font-size: 20px;
+}
+
+.center_container{
+    justify-content: center;
+    margin: auto auto auto 200px;
+    text-align: center;
+}
+
+.center_container .item {
+    margin: 2%;
+}
+
+.container{
+    justify-content: center;
+    margin: auto auto auto 200px;
+    text-align: left;
+}
+
+.container .item {
+    margin: 2%;
+}
+
+.container .center_item {
+    margin: 2%;
+    text-align: center;
+}
+
+.container .indent {
+    text-indent: 30px;
+}
+
+input[type="text"],input[type="password"]{
+    width: 300px;
+    height: 30px;
+    font-size: 18px;
+    margin: 1%;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+.submit {
+    padding-left: 10px;
+    width: 75px;
+    height: 27px;
+}
+
+.header {
+    margin: auto auto auto 200px;
+    text-align: center;
+    justify-content: center;
+}
+.head {
+    text-align: center;
+    justify-content: center;
+    align-self: flex-start;
+}
+.menu {
+    max-width: 200px;
+    max-height: 40px;
+    align-self: flex-start;
+}
+.menu .item{
+    margin: 30px auto auto auto;
+    overflow: hidden;
+    transition: flex 0.1ms ease;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+}
+.menu .item:hover {
+    max-width: 200px;
+    max-height: 100px;
+    flex: 0.0001 1 75px;
+    transition-delay: 0.3s;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.error {
+    color: #ff0000;
+    text-align: center;
 }

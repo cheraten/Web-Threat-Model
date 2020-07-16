@@ -1,5 +1,6 @@
 package com.cheraten.threatmodel.controller;
 
+import com.cheraten.threatmodel.service.ThreatService;
 import com.cheraten.threatmodel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -5,11 +5,20 @@
 <html lang="ru">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
     <title>Вопрос №2</title>
 </head>
-<body bgcolor="#F5FFFA">
-<h3>Определение вероятности реализации угрозы.</h3>
-<form:form method="POST" action="probability"  modelAttribute="probability">
+<body>
+<div class="header"><a><h2>Определение вероятности реализации угрозы</h2></a></div>
+<div class="menu"><jsp:include page="menu.jsp"></jsp:include></div>
+
+<div class="container">
+<form:form method="POST" action="probability"  modelAttribute="probabilityForm">
+    <c:forEach items="${allThreats}" var="threat">
+        <p><form:radiobutton path="threatId" name="threatId" value="${threat.id}"/>угроза ${threat.name} системы ${threat.isystem.getName()}</p>
+    </c:forEach>
+    <p><div class="error">${threatError}</div></p>
+
     <p><b>Выберите нарушителей, обладающих, на ваш взгляд, мотивацией для атаки системы:</b></p>
     <p><form:checkbox path="probabilityString" value="low"/>Внешние субъекты (физические лица)</p>
     <p><form:checkbox path="probabilityString" value="low"/>Бывшие работники</p>
@@ -22,8 +31,10 @@
     <p><form:checkbox path="probabilityString" value="medium"/>Конкурирующие организации</p>
     <p><form:checkbox path="probabilityString" value="medium"/>Разработчики, производители, поставщики ПО и технических средств</p>
     <p><form:checkbox path="probabilityString" value="high"/>Специальные службы иностранных государств (блоков государств)</p>
+    <p><div class="error">${probabilityError}</div></p>
 
-    <p><input type="submit" name="submit" value="Следующий вопрос"></p>
+    <p><input type="submit" name="submit" value="Подтвердить"></p>
 </form:form>
+</div>
 </body>
 </html>
