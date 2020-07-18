@@ -1,5 +1,6 @@
 package com.cheraten.threatmodel.controller;
 
+import com.cheraten.threatmodel.entity.Threat;
 import com.cheraten.threatmodel.service.ISystemService;
 import com.cheraten.threatmodel.service.ThreatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +31,36 @@ public class MainController {
     public ModelAndView delete(@RequestParam(required = true, defaultValue = "" ) Long id,
                               @RequestParam(required = true, defaultValue = "" ) String action) {
         ModelAndView modelAndView = new ModelAndView();
-        if (action.equals("deleteThreat")){
-            threatService.deleteThreat(id);
+        if (action.equals("renameThreat")){
+            modelAndView.setViewName("threat_rename.jsp");
+            modelAndView.addObject("threat", threatService.findThreatById(id));
         }
-        if (action.equals("deleteISystem")){
-            isystemService.setThreatListByISystem(isystemService.findISystemById(id), threatService.allThreats());
-            for (int i = 0; i < isystemService.findISystemById(id).getThreats().size(); i++) {
-                Long threatId = isystemService.findISystemById(id).getThreats().get(i).getId();
-                threatService.deleteThreat(threatId);
+        if (action.equals("replaceThreat")){
+            modelAndView.setViewName("threat_replace.jsp");
+            modelAndView.addObject("threat", threatService.findThreatById(id));
+            modelAndView.addObject("allISystems", isystemService.allISystems());
+        }
+        if (action.equals("renameISystem")){
+            modelAndView.setViewName("isystem_rename.jsp");
+            modelAndView.addObject("isystem", isystemService.findISystemById(id));
+        }
+        if (action.equals("deleteThreat") || action.equals("deleteISystem")) {
+            if (action.equals("deleteThreat")) {
+                threatService.deleteThreat(id);
             }
-            isystemService.deleteISystem(id);
+            if (action.equals("deleteISystem")) {
+                isystemService.setThreatListByISystem(isystemService.findISystemById(id), threatService.allThreats());
+                for (int i = 0; i < isystemService.findISystemById(id).getThreats().size(); i++) {
+                    Long threatId = isystemService.findISystemById(id).getThreats().get(i).getId();
+                    threatService.deleteThreat(threatId);
+                }
+                isystemService.deleteISystem(id);
+            }
+            for (int i = 0; i < isystemService.allISystems().size(); i++)
+                isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+            modelAndView.addObject("allISystems", isystemService.allISystems());
+            modelAndView.setViewName("modeling.jsp");
         }
-
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
-        modelAndView.addObject("allISystems", isystemService.allISystems());
-        modelAndView.setViewName("modeling.jsp");
         return modelAndView;
     }
 

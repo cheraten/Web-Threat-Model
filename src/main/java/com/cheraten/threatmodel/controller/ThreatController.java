@@ -1,5 +1,6 @@
 package com.cheraten.threatmodel.controller;
 
+import com.cheraten.threatmodel.entity.ISystem;
 import com.cheraten.threatmodel.entity.Threat;
 import com.cheraten.threatmodel.model.Danger;
 import com.cheraten.threatmodel.model.Probability;
@@ -34,13 +35,85 @@ public class ThreatController {
     }
 
     @PostMapping("/threat")
-    public ModelAndView postThreat(@ModelAttribute("threatForm") @Valid Threat threatForm, Model model) {
+    public ModelAndView postThreat(@ModelAttribute("threatForm") @Valid Threat threatForm, String action) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (action.equals("renameThreat")){
+            threatForm.setIsystem(threatService.findThreatById(threatForm.getId()).getIsystem());
+            if (threatForm.getName().equals("")) {
+                modelAndView.addObject("nameError", "Введите название угрозы!");
+                modelAndView.setViewName("threat_rename.jsp");
+                return modelAndView;
+            }
+            if (!threatService.saveThreat(threatForm)){
+                modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
+                modelAndView.setViewName("threat_rename.jsp");
+                return modelAndView;
+            }
+        }
+        if (action.equals("replaceThreat")) {
+            if (threatForm.getIsystem() == null) {
+                modelAndView.addObject("nameError", "Выберите систему!");
+                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("allISystems", isystemService.allISystems());
+                return modelAndView;
+            }
+            if (!threatService.saveThreat(threatForm)) {
+                modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
+                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("allISystems", isystemService.allISystems());
+                return modelAndView;
+            }
+        }
+        if(action.equals("createThreat")) {
+            if (threatForm.getName().equals("")) {
+                modelAndView.addObject("nameError", "Введите название угрозы!");
+                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("allISystems", isystemService.allISystems());
+                return modelAndView;
+            }
+            if (threatForm.getIsystem() == null) {
+                modelAndView.addObject("nameError", "Выберите систему!");
+                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("allISystems", isystemService.allISystems());
+                return modelAndView;
+            }
+            if (!threatService.saveThreat(threatForm)) {
+                modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
+                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("allISystems", isystemService.allISystems());
+                return modelAndView;
+            }
+        }
+        for (int i = 0; i < isystemService.allISystems().size(); i++)
+            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+        modelAndView.addObject("allISystems", isystemService.allISystems());
+        modelAndView.setViewName("modeling.jsp");
+        return modelAndView;
+    }
+
+    @PostMapping("/threat_rename")
+    public ModelAndView renameThreat(@ModelAttribute("threatForm") @Valid Threat threatForm) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (!threatService.saveThreat(threatForm)){
-            model.addAttribute("nameError", "Угроза с таким именем уже существует!");
-            modelAndView.setViewName("threat.jsp");
-            model.addAttribute("allISystems", isystemService.allISystems());
+            modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
+            modelAndView.setViewName("threat_rename.jsp");
+            return modelAndView;
+        }
+        for (int i = 0; i < isystemService.allISystems().size(); i++)
+            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+        modelAndView.addObject("allISystems", isystemService.allISystems());
+        modelAndView.setViewName("modeling.jsp");
+        return modelAndView;
+    }
+
+    @PostMapping("/threat_replace")
+    public ModelAndView replaceThreat(@ModelAttribute("threatForm") @Valid Threat threatForm) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (!threatService.saveThreat(threatForm)){
+            modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
+            modelAndView.setViewName("threat_replace.jsp");
             return modelAndView;
         }
         for (int i = 0; i < isystemService.allISystems().size(); i++)

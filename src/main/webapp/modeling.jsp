@@ -24,20 +24,24 @@
         <c:forEach items="${allISystems}" var="isystem">
             <table>
             <th colspan="5">Система: ${isystem.name}, уровень исходной защищённости: ${isystem.securityLevel}</th>
+            <th><form action="/modeling" method="post">
+                <input type="hidden" name="id" value="${isystem.id}"/>
+                <input type="hidden" name="action" value="renameISystem"/>
+                <button type="submit">rename</button>
+            </form></th>
             <th><form action="${pageContext.request.contextPath}/modeling" method="post">
                 <input type="hidden" name="id" value="${isystem.id}"/>
                 <input type="hidden" name="action" value="deleteISystem"/>
-                <button type="submit">Удалить</button>
-            </form>
-            </th>
-                <tr>
+                <button type="submit">delete</button>
+            </form></th>
+            <tr>
                 <th>Название</th>
                 <th>Вероятность реализации</th>
                 <th>Реализуемость</th>
                 <th>Опасность</th>
                 <th>Актуальность</th>
-                </tr>
-                <c:forEach items="${isystem.threats}" var="threat">
+            </tr>
+             <c:forEach items="${isystem.threats}" var="threat">
                 <tr>
                     <td>${threat.name}</td>
                     <td>${threat.probability}</td>
@@ -45,13 +49,28 @@
                     <td>${threat.danger}</td>
                     <td>${threat.relevance}</td>
                     <td>
-                                 <input type="hidden" name="id" value="${threat.id}"/>
+                        <form action="/modeling" method="post">
+                            <input type="hidden" name="id" value="${threat.id}"/>
+                            <input type="hidden" name="action" value="renameThreat"/>
+                            <button type="submit">rename</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/modeling" method="post">
+                            <input type="hidden" name="id" value="${threat.id}"/>
+                            <input type="hidden" name="action" value="replaceThreat"/>
+                            <button type="submit">replace</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/modeling" method="post">
+                            <input type="hidden" name="id" value="${threat.id}"/>
                             <input type="hidden" name="action" value="deleteThreat"/>
-                            <button type="submit">Удалить</button>
+                            <button type="submit">delete</button>
                         </form>
                     </td>
                 </tr>
-                </c:forEach>
+             </c:forEach>
             </table>
         </c:forEach>
 

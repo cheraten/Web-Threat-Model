@@ -14,21 +14,21 @@
 <body>
 <div class="header"><a><h2>Угроза</h2></a></div>
 <div class="menu"><jsp:include page="menu.jsp"></jsp:include></div>
-
 <div class="container">
     <div class="center_item">
         <form:form method="POST" action="/threat" modelAttribute="threatForm">
-            <input type="hidden" name="action" value="createThreat"/>
+            <input type="hidden" name="action" value="renameThreat"/>
+            <input type="hidden" value="${threat}" var="threat"/>
+            <input type="hidden" name="id" value="${threat.id}"/>
+            <input type="hidden" path="isystem" name="isystem_id" value="${threat.isystem.getId()}"/>
+            <input type="hidden" name="probability" value="${threat.probability}"/>
+            <input type="hidden" name="feasibility" value="${threat.feasibility}"/>
+            <input type="hidden" name="relevance" value="${threat.relevance}"/>
+            <input type="hidden" name="danger" value="${threat.danger}"/>
+
             <p><input name="name" type="text" placeholder="Threat name" autofocus="true"/></p>
-            <c:forEach items="${allISystems}" var="isystem">
-            <p><form:radiobutton path="isystem" name="isystem_id" value="${isystem.id}"/>${isystem.name}</p>
-            </c:forEach>
-            <p><input type="hidden" name="probability" value="unconfined"/></p>
-            <p><input type="hidden" name="feasibility" value="unconfined"/></p>
-            <p><input type="hidden" name="relevance" value="unconfined"/></p>
-            <p><input type="hidden" name="danger" value="unconfined"/></p>
             <p><div class="error">${nameError}</div></p>
-            <p><button type="submit">Подтвердить</button></p>
+            <p><button type="submit">submit</button></p>
         </form:form>
     </div>
 </div>

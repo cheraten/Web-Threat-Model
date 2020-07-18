@@ -1,5 +1,6 @@
 package com.cheraten.threatmodel.service;
 
+import com.cheraten.threatmodel.entity.ISystem;
 import com.cheraten.threatmodel.entity.Threat;
 import com.cheraten.threatmodel.repo.ISystemRepository;
 import com.cheraten.threatmodel.repo.ThreatRepository;
@@ -39,6 +40,36 @@ public class ThreatService {
                     return false;
                 }
         }
+        threatRepository.save(threat);
+        return true;
+    }
+
+    public boolean renameThreat(Long threatId, String threatNewName) {
+        System.out.println(findThreatById(threatId).getName());
+        List<Threat> threatFromDBNames = threatRepository.findByName(threatNewName);
+        if (threatFromDBNames.size() != 0) {
+            for (int i = 0; i < threatFromDBNames.size(); i++)
+                if (findThreatById(threatId).getIsystem().equals(threatFromDBNames.get(i).getIsystem())) {
+                    return false;
+                }
+        }
+        Threat threat = findThreatById(threatId);
+        threat.setName(threatNewName);
+        threatRepository.save(threat);
+        return true;
+    }
+
+    public boolean replaceThreat(Long threatId, ISystem iSystem) {
+        System.out.println(findThreatById(threatId).getName());
+        List<Threat> threatFromDBNames = threatRepository.findByName(findThreatById(threatId).getName());
+        if (threatFromDBNames.size() != 0) {
+            for (int i = 0; i < threatFromDBNames.size(); i++)
+                if (iSystem.equals(threatFromDBNames.get(i).getIsystem())) {
+                    return false;
+                }
+        }
+        Threat threat = findThreatById(threatId);
+        threat.setIsystem(iSystem);
         threatRepository.save(threat);
         return true;
     }

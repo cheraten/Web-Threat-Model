@@ -33,13 +33,31 @@ public class ISystemController {
     }
 
     @PostMapping("/isystem")
-    public ModelAndView postISystem(@ModelAttribute("isystemForm") @Valid ISystem isystemForm, Model model) {
+    public ModelAndView postISystem(@ModelAttribute("isystemForm") @Valid ISystem isystemForm, String action) {
         ModelAndView modelAndView = new ModelAndView();
-
-        if (!isystemService.saveISystem(isystemForm)){
-            model.addAttribute("nameError", "Система с таким именем уже существует");
-            modelAndView.setViewName("isystem.jsp");
-            return modelAndView;
+        if (action.equals("renameISystem")) {
+            if (isystemForm.getName().equals("")) {
+                modelAndView.addObject("nameError", "Введите название системы!");
+                modelAndView.setViewName("isystem_rename.jsp");
+                return modelAndView;
+            }
+            if (!isystemService.saveISystem(isystemForm)){
+                modelAndView.addObject("nameError", "Система с таким именем уже существует");
+                modelAndView.setViewName("isystem_rename.jsp");
+                return modelAndView;
+            }
+        }
+        if (action.equals("createISystem")) {
+            if (isystemForm.getName().equals("")) {
+                modelAndView.addObject("nameError", "Введите название системы!");
+                modelAndView.setViewName("isystem.jsp");
+                return modelAndView;
+            }
+            if (!isystemService.saveISystem(isystemForm)) {
+                modelAndView.addObject("nameError", "Система с таким именем уже существует");
+                modelAndView.setViewName("isystem.jsp");
+                return modelAndView;
+            }
         }
         for (int i = 0; i < isystemService.allISystems().size(); i++)
             isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());

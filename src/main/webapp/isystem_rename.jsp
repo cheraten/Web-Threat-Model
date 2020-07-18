@@ -16,9 +16,12 @@
 <div class="container">
     <div class="center_item">
         <form method="POST" action="/isystem" modelAttribute="isystemForm">
-            <input type="hidden" name="action" value="createISystem"/>
+            <input type="hidden" name="action" value="renameISystem"/>
+            <input type="hidden" value="${isystem}" var="isystem"/>
+            <input type="hidden" name="id" value="${isystem.id}"/>
+            <input type="hidden" name="securityLevel" value="${isystem.securityLevel}"/>
+
             <p><input name="name" type="text" placeholder="Information System name" autofocus="true"/></p>
-            <p><input type="hidden" name="securityLevel" value="unconfined"/></p>
             <p><div class="error">${nameError}</div></p>
             <p><button type="submit">Подтвердить</button></p>
         </form>
