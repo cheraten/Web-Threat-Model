@@ -50,7 +50,7 @@ public class ModelingUtil {
         int Y2 = -1;
         String feasibilityThreat = "unconfined";
 
-        if (!probability.equals("unconfined")) {
+        if (!probability.equals("unconfined") && !securityLevel.equals("unconfined")) {
             if (securityLevel.equals("Высокий"))
                 Y1 = 0;
             if (securityLevel.equals("Средний"))

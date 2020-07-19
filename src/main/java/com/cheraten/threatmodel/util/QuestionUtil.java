@@ -1,6 +1,6 @@
-package com.cheraten.threatmodel.service;
+package com.cheraten.threatmodel.util;
 
-public class QuestionService {
+public class QuestionUtil {
 
     public static String[] splitString(String checkbox) {
         String s[] = checkbox.split(",");

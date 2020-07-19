@@ -1,13 +1,12 @@
 package com.cheraten.threatmodel.controller;
 
-import com.cheraten.threatmodel.entity.ISystem;
 import com.cheraten.threatmodel.entity.Threat;
 import com.cheraten.threatmodel.model.Danger;
 import com.cheraten.threatmodel.model.Probability;
 import com.cheraten.threatmodel.service.ISystemService;
-import com.cheraten.threatmodel.service.QuestionService;
 import com.cheraten.threatmodel.service.ThreatService;
 import com.cheraten.threatmodel.util.ModelingUtil;
+import com.cheraten.threatmodel.util.QuestionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +23,7 @@ public class ThreatController {
     @Autowired
     private ThreatService threatService;
     @Autowired
-    private static QuestionService qService;
+    private static QuestionUtil questionUtil;
     private static ModelingUtil modelingUtil;
 
     @GetMapping("/threat")
@@ -41,6 +40,7 @@ public class ThreatController {
             threatForm.setIsystem(threatService.findThreatById(threatForm.getId()).getIsystem());
             if (threatForm.getName().equals("")) {
                 modelAndView.addObject("nameError", "Введите название угрозы!");
+                modelAndView.addObject("threat", threatForm);
                 modelAndView.setViewName("threat_rename.jsp");
                 return modelAndView;
             }
@@ -53,16 +53,24 @@ public class ThreatController {
         if (action.equals("replaceThreat")) {
             if (threatForm.getIsystem() == null) {
                 modelAndView.addObject("nameError", "Выберите систему!");
-                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("threat", threatForm);
                 modelAndView.addObject("allISystems", isystemService.allISystems());
+                modelAndView.setViewName("threat_replace.jsp");
                 return modelAndView;
             }
             if (!threatService.saveThreat(threatForm)) {
                 modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
-                modelAndView.setViewName("threat.jsp");
+                modelAndView.addObject("threat", threatForm);
                 modelAndView.addObject("allISystems", isystemService.allISystems());
+                modelAndView.setViewName("threat_replace.jsp");
                 return modelAndView;
             }
+            String feasibility = modelingUtil.findFeasibilityThreat(threatService.findThreatById(threatForm.getId()).getIsystem().getSecurityLevel(),
+                    threatService.findThreatById(threatForm.getId()).getProbability());
+            threatService.setFeasibilityByName(threatForm.getId(),feasibility);
+            String relevance = modelingUtil.findRelevanceThreat(threatService.findThreatById(threatForm.getId()).getFeasibility(),
+                    threatService.findThreatById(threatForm.getId()).getDanger());
+            threatService.setRelevanceByName(threatForm.getId(),relevance);
         }
         if(action.equals("createThreat")) {
             if (threatForm.getName().equals("")) {
@@ -83,38 +91,6 @@ public class ThreatController {
                 modelAndView.addObject("allISystems", isystemService.allISystems());
                 return modelAndView;
             }
-        }
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
-        modelAndView.addObject("allISystems", isystemService.allISystems());
-        modelAndView.setViewName("modeling.jsp");
-        return modelAndView;
-    }
-
-    @PostMapping("/threat_rename")
-    public ModelAndView renameThreat(@ModelAttribute("threatForm") @Valid Threat threatForm) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        if (!threatService.saveThreat(threatForm)){
-            modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
-            modelAndView.setViewName("threat_rename.jsp");
-            return modelAndView;
-        }
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
-        modelAndView.addObject("allISystems", isystemService.allISystems());
-        modelAndView.setViewName("modeling.jsp");
-        return modelAndView;
-    }
-
-    @PostMapping("/threat_replace")
-    public ModelAndView replaceThreat(@ModelAttribute("threatForm") @Valid Threat threatForm) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        if (!threatService.saveThreat(threatForm)){
-            modelAndView.addObject("nameError", "Угроза с таким именем для системы уже существует!");
-            modelAndView.setViewName("threat_replace.jsp");
-            return modelAndView;
         }
         for (int i = 0; i < isystemService.allISystems().size(); i++)
             isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
@@ -150,7 +126,7 @@ public class ThreatController {
             modelAndView.addObject("allThreats", threatService.allThreats());
             return modelAndView;
         }
-        String[] splitString = qService.splitString(probabilityForm.getProbabilityString());
+        String[] splitString = questionUtil.splitString(probabilityForm.getProbabilityString());
 
         ArrayList<String> probabilityList = new ArrayList<>();
         for (int i = 0; i < splitString.length; i++)

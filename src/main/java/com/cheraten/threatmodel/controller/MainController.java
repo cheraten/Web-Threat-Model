@@ -1,5 +1,6 @@
 package com.cheraten.threatmodel.controller;
 
+import com.cheraten.threatmodel.entity.ISystem;
 import com.cheraten.threatmodel.entity.Threat;
 import com.cheraten.threatmodel.service.ISystemService;
 import com.cheraten.threatmodel.service.ThreatService;
@@ -33,15 +34,18 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         if (action.equals("renameThreat")){
             modelAndView.setViewName("threat_rename.jsp");
+            modelAndView.addObject("threatForm", new Threat());
             modelAndView.addObject("threat", threatService.findThreatById(id));
         }
         if (action.equals("replaceThreat")){
             modelAndView.setViewName("threat_replace.jsp");
+            modelAndView.addObject("threatForm", new Threat());
             modelAndView.addObject("threat", threatService.findThreatById(id));
             modelAndView.addObject("allISystems", isystemService.allISystems());
         }
         if (action.equals("renameISystem")){
             modelAndView.setViewName("isystem_rename.jsp");
+            modelAndView.addObject("isystemForm", new ISystem());
             modelAndView.addObject("isystem", isystemService.findISystemById(id));
         }
         if (action.equals("deleteThreat") || action.equals("deleteISystem")) {

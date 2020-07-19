@@ -3,9 +3,9 @@ package com.cheraten.threatmodel.controller;
 import com.cheraten.threatmodel.entity.ISystem;
 import com.cheraten.threatmodel.model.SecurityLevel;
 import com.cheraten.threatmodel.service.ISystemService;
-import com.cheraten.threatmodel.service.QuestionService;
 import com.cheraten.threatmodel.service.ThreatService;
 import com.cheraten.threatmodel.util.ModelingUtil;
+import com.cheraten.threatmodel.util.QuestionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +17,8 @@ import java.util.ArrayList;
 
 @Controller
 public class ISystemController {
-    private static QuestionService qService;
+    private static QuestionUtil questionUtil;
     private static ModelingUtil modelingUtil;
-
     @Autowired
     private ISystemService isystemService;
     @Autowired
@@ -38,6 +37,7 @@ public class ISystemController {
         if (action.equals("renameISystem")) {
             if (isystemForm.getName().equals("")) {
                 modelAndView.addObject("nameError", "Введите название системы!");
+                modelAndView.addObject("isystem", isystemForm);
                 modelAndView.setViewName("isystem_rename.jsp");
                 return modelAndView;
             }
@@ -102,7 +102,7 @@ public class ISystemController {
             modelAndView.addObject("allISystems", isystemService.allISystems());
             return modelAndView;
         }
-        String[] splitString2 = qService.splitString(securityLevelForm.getSecurityLevel2());
+        String[] splitString2 = questionUtil.splitString(securityLevelForm.getSecurityLevel2());
 
         if (securityLevelForm.getSecurityLevel3() == null) {
             modelAndView.addObject("securityLevelError3", "Выберите хотя бы один пункт!");
@@ -110,7 +110,7 @@ public class ISystemController {
             modelAndView.addObject("allISystems", isystemService.allISystems());
             return modelAndView;
         }
-        String[] splitString3 = qService.splitString(securityLevelForm.getSecurityLevel3());
+        String[] splitString3 = questionUtil.splitString(securityLevelForm.getSecurityLevel3());
 
         for (int i = 0; i < splitString2.length; i++)
             securityLevelList.add(splitString2[i]);
