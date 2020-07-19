@@ -14,6 +14,7 @@
 
 <div class="container">
 <form:form method="POST" action="probability"  modelAttribute="probabilityForm">
+    <p><b>¬ыберите угрозу, дл€ которой будет определена веро€тность реализации:</b></p>
     <c:forEach items="${allThreats}" var="threat">
         <p><form:radiobutton path="threatId" name="threatId" value="${threat.id}"/>угроза ${threat.name} системы ${threat.isystem.getName()}</p>
     </c:forEach>

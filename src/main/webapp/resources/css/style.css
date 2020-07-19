@@ -1,7 +1,6 @@
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 14px;
-    background: white;
     max-width: 100%;
     width: 80%;
     border-collapse: collapse;
@@ -29,12 +28,15 @@ body{
     background-image: url("https://sun1-99.userapi.com/HLTJi4MAt9Qk4VYqAKIV9YRi2DHJPbUy5bwzvg/7yyECMbzZck.jpg");
 }
 p{
-    color: #000000;
-    font-size: 16px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    color: #011744;
+    font-size: 17px;
 }
 
 a{
-    font-size: 20px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    color: #039;
+    font-size: 17px;
 }
 
 .center_container{

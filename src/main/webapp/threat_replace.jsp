@@ -22,6 +22,8 @@
             <input type="hidden" name="action" value="replaceThreat"/>
             <input type="hidden" value="${threat}" var="threat"/>
             <input type="hidden" name="id" value="${threat.id}"/>
+
+            <p><b>Информационная система, которой принадлежит угроза ${threat.name}, будет изменена с ${threat.isystem.name} на:</b></p>
             <c:forEach items="${allISystems}" var="isystem">
                 <p><form:radiobutton path="isystem" name="isystem_id" value="${isystem.id}"/>${isystem.name}</p>
             </c:forEach>

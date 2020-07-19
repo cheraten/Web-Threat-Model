@@ -26,6 +26,7 @@
             <input type="hidden" name="relevance" value="${threat.relevance}"/>
             <input type="hidden" name="danger" value="${threat.danger}"/>
 
+            <p><b>Название угрозы ${threat.name} будет изменено на:</b></p>
             <p><input name="name" type="text" placeholder="Threat name" autofocus="true"/></p>
             <p><div class="error">${nameError}</div></p>
             <p><button type="submit">submit</button></p>

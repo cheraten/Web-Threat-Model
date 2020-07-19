@@ -23,7 +23,7 @@
     <div class="center_item">
         <c:forEach items="${allISystems}" var="isystem">
             <table>
-            <th colspan="5">Система: ${isystem.name}, уровень исходной защищённости: ${isystem.securityLevel}</th>
+            <th colspan="5">Система: ${isystem.name}. Уровень исходной защищённости: ${isystem.securityLevel}</th>
             <th><form action="/modeling" method="post">
                 <input type="hidden" name="id" value="${isystem.id}"/>
                 <input type="hidden" name="action" value="renameISystem"/>

@@ -16,6 +16,7 @@
 <div class="container">
     <div class="center_item">
         <form method="POST" action="/isystem" modelAttribute="isystemForm">
+            <p><b>Введите название информационой системы:</b></p>
             <input type="hidden" name="action" value="createISystem"/>
             <p><input name="name" type="text" placeholder="Information System name" autofocus="true"/></p>
             <p><input type="hidden" name="securityLevel" value="unconfined"/></p>

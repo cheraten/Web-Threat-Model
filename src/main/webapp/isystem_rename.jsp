@@ -21,6 +21,7 @@
             <input type="hidden" name="id" value="${isystem.id}"/>
             <input type="hidden" name="securityLevel" value="${isystem.securityLevel}"/>
 
+            <p><b>Название информационной системы ${isystem.name} будет изменено на:</b></p>
             <p><input name="name" type="text" placeholder="Information System name" autofocus="true"/></p>
             <p><div class="error">${nameError}</div></p>
             <p><button type="submit">Подтвердить</button></p>

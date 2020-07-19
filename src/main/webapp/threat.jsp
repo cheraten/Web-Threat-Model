@@ -18,8 +18,11 @@
 <div class="container">
     <div class="center_item">
         <form:form method="POST" action="/threat" modelAttribute="threatForm">
+            <p><b>Введите название угрозы:</b></p>
             <input type="hidden" name="action" value="createThreat"/>
             <p><input name="name" type="text" placeholder="Threat name" autofocus="true"/></p>
+
+            <p><b>Выберите информационную систему, которой принадлежит угроза:</b></p>
             <c:forEach items="${allISystems}" var="isystem">
             <p><form:radiobutton path="isystem" name="isystem_id" value="${isystem.id}"/>${isystem.name}</p>
             </c:forEach>

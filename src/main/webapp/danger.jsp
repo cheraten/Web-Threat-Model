@@ -14,6 +14,7 @@
 
 <div class="container">
 <form:form method="POST" action="danger"  modelAttribute="dangerForm">
+    <p><b>¬ыберите угрозу, дл€ которой будет определена еЄ опасность:</b></p>
     <c:forEach items="${allThreats}" var="threat">
         <p><form:radiobutton path="threatId" name="threatId" value="${threat.id}"/>угроза ${threat.name} системы ${threat.isystem.getName()}</p>
     </c:forEach>

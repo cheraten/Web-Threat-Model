@@ -14,6 +14,7 @@
 
 <div class="container">
 <form:form method="POST" action="security_level"  modelAttribute="securityLevelForm">
+    <p><b>Выберите информационную систему, для которой будет определён уровень исходной защищённости:</b></p>
     <c:forEach items="${allISystems}" var="isystem">
         <p><form:radiobutton path="isystemId" name="isystemId" value="${isystem.id}"/>${isystem.name}</p>
     </c:forEach>
