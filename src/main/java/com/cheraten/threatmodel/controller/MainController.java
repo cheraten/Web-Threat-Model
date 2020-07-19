@@ -20,9 +20,7 @@ public class MainController {
     public ModelAndView getMainPage() {
         ModelAndView modelAndView = new ModelAndView();
 
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
-
+        isystemService.setFullThreatListByISystems();
         modelAndView.addObject("allISystems", isystemService.allISystems());
         modelAndView.setViewName("modeling.jsp");
         return modelAndView;
@@ -60,8 +58,7 @@ public class MainController {
                 }
                 isystemService.deleteISystem(id);
             }
-            for (int i = 0; i < isystemService.allISystems().size(); i++)
-                isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+            isystemService.setFullThreatListByISystems();
             modelAndView.addObject("allISystems", isystemService.allISystems());
             modelAndView.setViewName("modeling.jsp");
         }

@@ -65,12 +65,7 @@ public class ThreatController {
                 modelAndView.setViewName("threat_replace.jsp");
                 return modelAndView;
             }
-            String feasibility = modelingUtil.findFeasibilityThreat(threatService.findThreatById(threatForm.getId()).getIsystem().getSecurityLevel(),
-                    threatService.findThreatById(threatForm.getId()).getProbability());
-            threatService.setFeasibilityByName(threatForm.getId(),feasibility);
-            String relevance = modelingUtil.findRelevanceThreat(threatService.findThreatById(threatForm.getId()).getFeasibility(),
-                    threatService.findThreatById(threatForm.getId()).getDanger());
-            threatService.setRelevanceByName(threatForm.getId(),relevance);
+            threatService.recalculateFeasibilityRelevanceThreat(threatForm.getId());
         }
         if(action.equals("createThreat")) {
             if (threatForm.getName().equals("")) {
@@ -92,8 +87,7 @@ public class ThreatController {
                 return modelAndView;
             }
         }
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+        isystemService.setFullThreatListByISystems();
         modelAndView.addObject("allISystems", isystemService.allISystems());
         modelAndView.setViewName("modeling.jsp");
         return modelAndView;
@@ -134,15 +128,9 @@ public class ThreatController {
         String probability = modelingUtil.findProbabilityThreat(probabilityList);
         threatService.setProbabilityByName(threatId,probability);
 
-        String feasibility = modelingUtil.findFeasibilityThreat(threatService.findThreatById(threatId).getIsystem().getSecurityLevel(),
-                threatService.findThreatById(threatId).getProbability());
-        threatService.setFeasibilityByName(threatId,feasibility);
+        threatService.recalculateFeasibilityRelevanceThreat(threatId);
 
-        String relevance = modelingUtil.findRelevanceThreat(threatService.findThreatById(threatId).getFeasibility(), threatService.findThreatById(threatId).getDanger());
-        threatService.setRelevanceByName(threatId,relevance);
-
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+        isystemService.setFullThreatListByISystems();
         modelAndView.addObject("allISystems", isystemService.allISystems());
         modelAndView.setViewName("modeling.jsp");
         return modelAndView;
@@ -177,15 +165,10 @@ public class ThreatController {
         }
         String danger = modelingUtil.findDangerThreat(dangerForm.getDangerString());
         threatService.setDangerByName(threatId,danger);
-        String feasibility = modelingUtil.findFeasibilityThreat(threatService.findThreatById(threatId).getIsystem().getSecurityLevel(),
-                threatService.findThreatById(threatId).getProbability());
-        threatService.setFeasibilityByName(threatId,feasibility);
-        String relevance = modelingUtil.findRelevanceThreat(threatService.findThreatById(threatId).getFeasibility(),
-                threatService.findThreatById(threatId).getDanger());
-        threatService.setRelevanceByName(threatId,relevance);
 
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+        threatService.recalculateFeasibilityRelevanceThreat(threatId);
+
+        isystemService.setFullThreatListByISystems();
         modelAndView.addObject("allISystems", isystemService.allISystems());
         modelAndView.setViewName("modeling.jsp");
         return modelAndView;

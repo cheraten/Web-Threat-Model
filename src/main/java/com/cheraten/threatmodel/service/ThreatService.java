@@ -4,6 +4,7 @@ import com.cheraten.threatmodel.entity.ISystem;
 import com.cheraten.threatmodel.entity.Threat;
 import com.cheraten.threatmodel.repo.ISystemRepository;
 import com.cheraten.threatmodel.repo.ThreatRepository;
+import com.cheraten.threatmodel.util.ModelingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class ThreatService {
     ThreatRepository threatRepository;
     @Autowired
     ISystemRepository isystemRepository;
+    ModelingUtil modelingUtil;
 
     public Threat findThreatById(Long id) {
         Optional<Threat> threatFromDb = threatRepository.findById(id);
@@ -92,6 +94,17 @@ public class ThreatService {
             return true;
         }
         return false;
+    }
+
+    public void recalculateFeasibilityRelevanceThreat(Long threatId) {
+        Threat threat = findThreatById(threatId);
+
+        String feasibility = modelingUtil.findFeasibilityThreat(threat.getIsystem().getSecurityLevel(),
+                findThreatById(threatId).getProbability());
+        setFeasibilityByName(threatId,feasibility);
+        String relevance = modelingUtil.findRelevanceThreat(threat.getFeasibility(),
+                findThreatById(threatId).getDanger());
+        setRelevanceByName(threatId,relevance);
     }
 
     public List<Threat> threatgtList(Long idMin) {

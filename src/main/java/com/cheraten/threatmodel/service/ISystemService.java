@@ -18,6 +18,8 @@ public class ISystemService {
     private EntityManager em;
     @Autowired
     ISystemRepository isystemRepository;
+    @Autowired
+    ThreatService threatService;
 
     public ISystem findISystemById(Long id) {
         Optional<ISystem> isystemFromDb = isystemRepository.findById(id);
@@ -56,6 +58,13 @@ public class ISystemService {
             return true;
         }
         return false;
+    }
+
+    public void setFullThreatListByISystems() {
+        List<ISystem> allISystems = allISystems();
+        List<Threat> allThreats = threatService.allThreats();
+        for (int i = 0; i < allISystems().size(); i++)
+            setThreatListByISystem(allISystems.get(i), allThreats);
     }
 
     public void setThreatListByISystem(ISystem isystem, List<Threat> allThreats) {

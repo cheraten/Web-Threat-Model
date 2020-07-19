@@ -1,8 +1,13 @@
 package com.cheraten.threatmodel.util;
 
+import com.cheraten.threatmodel.entity.Threat;
+import com.cheraten.threatmodel.service.ThreatService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 
 public class ModelingUtil {
+
     public static String findSecurityLevel(ArrayList<String> securityLevelList) {
         int highLevelCount = 0;
         int mediumLevelCount = 0;

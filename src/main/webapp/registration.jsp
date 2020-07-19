@@ -16,15 +16,16 @@
 <div class="container">
     <div class="center_item">
     <form:form method="POST" modelAttribute="userForm">
-        <p><form:input type="text" path="username" placeholder="Username"
-                        autofocus="true"></form:input>
-            <form:errors path="username"></form:errors>
-                ${usernameError} </p>
+        <p><form:input type="text" path="username" placeholder="Username" autofocus="true"></form:input></p>
+        <p><div class="error">${usernameError}</div></p>
+        <p><div class="error"><form:errors path="username"></form:errors></p>
+
         <p><form:input type="password" path="password" placeholder="Password"></form:input></p>
-        <p><form:input type="password" path="passwordConfirm"
-                        placeholder="Confirm your password"></form:input>
-            <form:errors path="password"></form:errors>
-                ${passwordError}</p>
+        <p><div class="error">${passwordError}</div></p>
+        <p><div class="error"><form:errors path="username"></form:errors></p>
+        <p><form:input type="password" path="passwordConfirm" placeholder="Confirm your password"></form:input></p>
+
+
         <p><button type="submit">Зарегистрироваться</button></p>
     </form:form>
     <div class="item">

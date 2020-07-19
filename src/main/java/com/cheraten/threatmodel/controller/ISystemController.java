@@ -179,18 +179,11 @@ public class ISystemController {
         isystemService.setThreatListByISystem(isystemService.findISystemById(isystemId),threatService.allThreats());
         for (int i = 0; i < isystemService.findISystemById(isystemId).getThreats().size(); i++) {
             Long threatId = isystemService.findISystemById(isystemId).getThreats().get(i).getId();
-            String feasibility = modelingUtil.findFeasibilityThreat(threatService.findThreatById(threatId).getIsystem().getSecurityLevel(),
-                    threatService.findThreatById(threatId).getProbability());
-            threatService.setFeasibilityByName(threatId,feasibility);
-            String relevance = modelingUtil.findRelevanceThreat(threatService.findThreatById(threatId).getFeasibility(),
-                    threatService.findThreatById(threatId).getDanger());
-            threatService.setRelevanceByName(threatId,relevance);
+            threatService.recalculateFeasibilityRelevanceThreat(threatId);
         }
 
-        for (int i = 0; i < isystemService.allISystems().size(); i++)
-            isystemService.setThreatListByISystem(isystemService.allISystems().get(i), threatService.allThreats());
+        isystemService.setFullThreatListByISystems();
         modelAndView.addObject("allISystems", isystemService.allISystems());
-        modelAndView.setViewName("modeling.jsp");
         modelAndView.setViewName("modeling.jsp");
         return modelAndView;
     }

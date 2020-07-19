@@ -34,6 +34,7 @@
                 <input type="hidden" name="action" value="deleteISystem"/>
                 <button type="submit">delete</button>
             </form></th>
+            <th></th>
             <tr>
                 <th>Название</th>
                 <th>Вероятность реализации</th>
