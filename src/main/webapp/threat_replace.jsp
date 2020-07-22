@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Log in with your account</title>
+    <title>Перемещение угрозы</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
@@ -33,8 +33,9 @@
             <p><input type="hidden" name="relevance" value="${threat.relevance}"/></p>
             <p><input type="hidden" name="danger" value="${threat.danger}"/></p>
             <p><div class="error">${nameError}</div></p>
-            <p><button type="submit">submit</button></p>
+            <p><button type="submit">Подтвердить</button></p>
         </form:form>
+        <a href="/modeling">Назад</a>
     </div>
 </div>
 

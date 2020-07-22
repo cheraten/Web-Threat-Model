@@ -88,31 +88,10 @@ input[type="text"],input[type="password"]{
     text-align: center;
     justify-content: center;
 }
-.head {
-    text-align: center;
-    justify-content: center;
-    align-self: flex-start;
-}
 .menu {
     max-width: 200px;
     max-height: 40px;
     align-self: flex-start;
-}
-.menu .item{
-    margin: 30px auto auto auto;
-    overflow: hidden;
-    transition: flex 0.1ms ease;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
-}
-.menu .item:hover {
-    max-width: 200px;
-    max-height: 100px;
-    flex: 0.0001 1 75px;
-    transition-delay: 0.3s;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
 }
 .error {
     color: #ff0000;

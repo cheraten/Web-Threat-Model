@@ -16,14 +16,12 @@
     <div class="center_item">
     <table>
         <thead>
-        <th>ID</th>
-        <th>UserName</th>
-        <th>Password</th>
-        <th>Roles</th>
+        <th>Имя</th>
+        <th>Пароль</th>
+        <th>Роль</th>
         </thead>
         <c:forEach items="${allUsers}" var="user">
             <tr>
-                <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
                 <td>

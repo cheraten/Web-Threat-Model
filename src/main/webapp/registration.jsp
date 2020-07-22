@@ -29,6 +29,9 @@
         <p><button type="submit">Зарегистрироваться</button></p>
     </form:form>
     <div class="item">
+        <a href="/login">Уже существует аккаунт? Войти</a>
+    </div>
+    <div class="item">
         <a href="/">Главная</a>
     </div>
     </div>

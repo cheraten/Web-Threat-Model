@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
-    <title>Вопрос №1</title>
+    <title>Тестирование</title>
 </head>
 <body>
 <div class="header"><a><h2>Определение уровня исходной защищённости информационной системы</h2></a></div>
@@ -85,7 +85,8 @@
     <p><form:radiobutton path="securityLevel10" value="low"/>Не сегментирована</p>
     <p><div class="error">${securityLevelError10}</div></p>
 
-    <p2><input type="submit" name="submit" value="Подтвердить"></p2>
+    <p><input type="submit" name="submit" value="Подтвердить">
+        <a href="/modeling">Назад</a></p>
 </form:form>
 </div>
 </body>

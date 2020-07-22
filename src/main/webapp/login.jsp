@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Log in with your account</title>
+    <title>Вход в ситему</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
@@ -24,6 +24,9 @@
     </form>
     <div class="item">
         <a href="/registration">Зарегистрироваться</a>
+    </div>
+    <div class="item">
+        <a href="/">Главная</a>
     </div>
     </div>
 </div>

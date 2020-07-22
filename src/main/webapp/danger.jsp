@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
-    <title>Вопрос №3</title>
+    <title>Тестирование</title>
 </head>
 <body>
 <div class="header"><a><h2>Определение опасности от реализации рассматриваемой угрозы</h2></a></div>
@@ -26,7 +26,8 @@
     <p><form:radiobutton path="dangerString" value="low"/>Низкий</p>
     <p><div class="error">${dangerError}</div></p>
 
-    <p><input type="submit" name="submit" value="Подтвердить"></p>
+    <p><input type="submit" name="submit" value="Подтвердить">
+        <a href="/modeling">Назад</a></p>
 </form:form>
 </div>
 </body>

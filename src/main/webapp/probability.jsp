@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=cp1251">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
-    <title>Вопрос №2</title>
+    <title>Тестирование</title>
 </head>
 <body>
 <div class="header"><a><h2>Определение вероятности реализации угрозы</h2></a></div>
@@ -34,7 +34,8 @@
     <p><form:checkbox path="probabilityString" value="high"/>Специальные службы иностранных государств (блоков государств)</p>
     <p><div class="error">${probabilityError}</div></p>
 
-    <p><input type="submit" name="submit" value="Подтвердить"></p>
+    <p><input type="submit" name="submit" value="Подтвердить">
+        <a href="/modeling">Назад</a></p>
 </form:form>
 </div>
 </body>

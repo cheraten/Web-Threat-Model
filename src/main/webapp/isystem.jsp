@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Log in with your account</title>
+    <title>Создание информационной системы</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
@@ -23,6 +23,7 @@
             <p><div class="error">${nameError}</div></p>
             <p><button type="submit">Подтвердить</button></p>
         </form>
+        <a href="/modeling">Назад</a>
     </div>
 </div>
 

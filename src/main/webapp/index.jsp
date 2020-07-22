@@ -14,7 +14,7 @@
 <div class="menu"><jsp:include page="menu.jsp"></jsp:include></div>
 <div class="container">
     <div class="center_item">
-    Этот сайт посвящён автоматизации деятельности по модеелированию угроз.
+        Этот сайт посвящён автоматизации деятельности по моделированию угроз.
     </div>
 </div>
 </body>

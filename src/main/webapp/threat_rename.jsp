@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Log in with your account</title>
+    <title>Переименование угрозы</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
 
@@ -29,8 +29,9 @@
             <p><b>Название угрозы ${threat.name} будет изменено на:</b></p>
             <p><input name="name" type="text" placeholder="Threat name" autofocus="true"/></p>
             <p><div class="error">${nameError}</div></p>
-            <p><button type="submit">submit</button></p>
+            <p><button type="submit">Подтвердить</button></p>
         </form:form>
+        <a href="/modeling">Назад</a>
     </div>
 </div>
 

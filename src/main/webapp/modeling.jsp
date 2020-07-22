@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Новости</title>
+    <title>Модель угроз</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
 </head>
@@ -74,8 +74,6 @@
              </c:forEach>
             </table>
         </c:forEach>
-
-    <a href="/">Главная</a>
     </div>
 </div>
 </body>
